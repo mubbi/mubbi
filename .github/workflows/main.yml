@@ -2,35 +2,27 @@ name: Generate Snake Image
 
 on:
   schedule:
-    - cron: '0 */12 * * *' # every 12 hours
+    - cron: '0 */12 * * *'  # every 12 hours
   workflow_dispatch:
 
 jobs:
   generate:
-    name: Generate Snake SVGs (dark and light) and Push
+    permissions:
+      contents: write
     runs-on: ubuntu-latest
+    timeout-minutes: 5
+
     steps:
-      - name: Checkout the repository
-        uses: actions/checkout@v4
-
-      - name: Generate dark theme snake SVG
-        uses: Platane/snk@v3
+      - name: Generate light and dark snake SVGs
+        uses: Platane/snk/svg-only@v3
         with:
           github_user_name: mubbi
           outputs: |
-            dist/github-contribution-grid-snake-dark.svg
-          theme: dark
-
-      - name: Generate light theme snake SVG
-        uses: Platane/snk@v3
-        with:
-          github_user_name: mubbi
-          outputs: |
-            dist/github-contribution-grid-snake-light.svg
-          theme: light
+            dist/github-contribution-grid-snake.svg
+            dist/github-contribution-grid-snake-dark.svg?palette=github-dark
 
       - name: Push SVGs to output branch
-        uses: crazy-max/ghaction-github-pages@v2.1.3
+        uses: crazy-max/ghaction-github-pages@v3.1.0
         with:
           target_branch: output
           build_dir: dist
