@@ -49,6 +49,6 @@
 
 ### 🐍 Snake Eating My Contributions
 
-<img src="https://raw.githubusercontent.com/mubbi/mubbi/output/github-contribution-grid-snake.svg" />
+<img src="https://raw.githubusercontent.com/mubbi/mubbi/output/dist/github-contribution-grid-snake.svg" />
 
 
